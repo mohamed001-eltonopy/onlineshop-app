@@ -1,20 +1,34 @@
-# onlineshop-app
+# Monitoring with Prometheus 
+
+### Configure your AWS from your terminal
+    aws configure    #enter your access key id & secret access key 
+    aws ec2 describe-instances        # test you can access your aws account 
+
+### install EKS for MAC
+    brew tap weaveworks/tap
+    brew install weaveworks/tap/eksctl
 
 ### Deploy MS in EKS
     eksctl create cluster
+    kubectl get node
+    mkdir online-shop-microservices
+    cd online-shop-microservices/
+    touch config-microservices.yaml
+    code .    
     kubectl create namespace online-shop
-    kubectly apply -f ~/Demo-projects/Bootcamp/monitoring/config-microservices.yaml -n online-shop
+    ls  #make sure that you can see the file of all microservices which is config-microservices.yaml 
+    kubectly apply -f config-microservices.yaml -n online-shop
+    kubectl get pod -n online-shop
 
-# OPTIONAL for Linode
-    chmod 400 ~/Downloads/online-shop-kubeconfig.yaml
-    export KUBECONFIG=~/Downloads/online-shop-kubeconfig.yaml
-
-
+### Install Helm for mac
+    brew install helm
+    
 ### Deploy Prometheus Operator Stack
     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
     helm repo update
     kubectl create namespace monitoring
     helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring
+    kubectl get all -n monitoring
     helm ls
 
 [Link to the chart: https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack]
