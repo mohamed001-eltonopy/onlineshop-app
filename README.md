@@ -4,7 +4,7 @@
     aws configure    #enter your access key id & secret access key 
     aws ec2 describe-instances        # test you can access your aws account 
 
-### install EKS for MAC
+### install eksctl for MAC
     brew tap weaveworks/tap
     brew install weaveworks/tap/eksctl
 
@@ -101,7 +101,7 @@
         done
 
         chmod    +x    test.sh
-
+        ./test.sh        
 
 ### Alerting with Prometheus 
     - Define what we want to be notified about ex: send notification, when pod can't restart 
@@ -291,7 +291,7 @@ spec:
       authPassword:
        name: gmail-auth
        key: password
-            
+           
 '''
 
     3- Apply the configuration 
